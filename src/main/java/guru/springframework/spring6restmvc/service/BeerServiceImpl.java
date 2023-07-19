@@ -2,7 +2,6 @@ package guru.springframework.spring6restmvc.service;
 
 import guru.springframework.spring6restmvc.model.Beer;
 import guru.springframework.spring6restmvc.model.BeerStyle;
-import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -67,8 +66,8 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
-    public Beer getBeerById(UUID id) {
-        return beerMap.get(id);
+    public Optional<Beer> getBeerById(UUID id) {
+        return Optional.of(beerMap.get(id));
     }
 
     @Override

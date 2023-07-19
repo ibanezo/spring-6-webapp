@@ -1,8 +1,6 @@
 package guru.springframework.spring6restmvc.service;
 
-import guru.springframework.spring6restmvc.model.Beer;
 import guru.springframework.spring6restmvc.model.Customer;
-import lombok.Builder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -44,8 +42,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getCustomerById(UUID id) {
-        return customerMap.get(id);
+    public Optional<Customer> getCustomerById(UUID id) {
+        return Optional.of(customerMap.get(id));
     }
 
     @Override
@@ -82,7 +80,7 @@ public class CustomerServiceImpl implements CustomerService {
     public void patchCustomerById(UUID customerId, Customer customer) {
         Customer existing = customerMap.get(customerId);
 
-        if (StringUtils.hasText(customer.getCustomerName())){
+        if (StringUtils.hasText(customer.getCustomerName())) {
             existing.setCustomerName(customer.getCustomerName());
         }
 
